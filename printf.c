@@ -10,10 +10,13 @@
 int _printf(const char *format, ...)
 {
 va_list args_list;
+int format_length;
+int char_count;
+int i;
 va_start(args_list, format);
-int format_length = strlen(format);
-int char_count = format_length;
-for (int i = 0; i < format_length; i++)
+format_length = strlen(format);
+char_count = format_length;
+for (i = 0; i < format_length; i++)
 {
 if (format[i] == '%')
 {
@@ -32,7 +35,8 @@ char_count -= strlen(str);
 }
 else if (format[i] == '%')
 {
-write(1, '%', 1);
+char percent='%';
+write(1,&percent, 1);
 char_count--;
 }
 else
