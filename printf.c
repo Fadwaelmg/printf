@@ -22,27 +22,34 @@ if (format[i] == 'c')
 {
 char c = (char)va_arg(args_list, int);
 write(1, &c, 1);
-char_count++;
-}
+char_count ++;
+} 
 else if (format[i] == 's')
 {
 char *str = va_arg(args_list, char *);
 write(1, str, strlen(str));
 char_count += strlen(str);
 }
-else if (format[i] == '%')
+else if (format[i] == '%') 
 {
 write(1, "%", 1);
 char_count++;
 }
+else if (format[i] == 'd' || format[i] == 'i')
+{
+int d = va_arg(args_list, int);
+char str[100];
+sprintf(str, "%d", d);
+write(1, str, strlen(str));
+char_count += strlen(str);
 }
-else
+}
+else 
 {
 write(1, &format[i], 1);
 char_count++;
 }
 }
 va_end(args_list);
-return (char_count);
+return char_count;
 }
-
