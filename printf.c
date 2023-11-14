@@ -10,10 +10,13 @@
 int _printf(const char *format, ...)
 {
 va_list args_list;
+int format_length;
+int char_count;
+int i;
 va_start(args_list, format);
-int format_length = strlen(format);
-int char_count = 0;
-for (int i = 0; i < format_length; i++)
+format_length = strlen(format);
+char_count = 0;
+for (i = 0; i < format_length; i++)
 {
 if (format[i] == '%')
 {
@@ -22,7 +25,7 @@ if (format[i] == 'c')
 {
 char c = (char)va_arg(args_list, int);
 write(1, &c, 1);
-char_count ++;
+char_count++;
 }
 else if (format[i] == 's')
 {
